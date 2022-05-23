@@ -6,6 +6,8 @@ UNIT_CHOICES = [
   ("tsp", "teaspoon"),
   ("l", "liter"),
   ("cup", "cup"),
+  ("oz", "ounces"),
+  ("lbs", "pound"),
   ("", "")
 ]
 
