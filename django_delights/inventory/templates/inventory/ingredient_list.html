@@ -1,0 +1,7 @@
+<h1>Testing Ingredients List</h1>
+
+{% block content %}
+{% for ingredient in ingredients %}
+  <p>{{ ingredient.name }}</p>
+{% endfor %}
+{% endblock %}
