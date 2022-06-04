@@ -18,6 +18,9 @@ class Ingredient(models.Model):
   unit_price = models.DecimalField(max_digits=7, decimal_places=2)
   unit = models.CharField(max_length=10, choices=UNIT_CHOICES, default="")
 
+  def get_absolute_url(self):
+    return "/ingredient/list"
+
 # represents an item on the restaurant’s menu
 class MenuItem(models.Model):
   title = models.CharField(max_length=50, unique=True)
