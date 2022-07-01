@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from inventory.models import Ingredient
 from .forms import IngredientForm
 
@@ -16,6 +17,14 @@ class IngredientCreate(CreateView):
   model = Ingredient
   template_name = "inventory/ingredient_create_form.html"
   form_class = IngredientForm
+
+class IngredientDetail(DetailView):
+  model = Ingredient
+  template_name = "inventory/ingredient_details.html"
+
+  def get_context_data(self, **kwargs):
+    return super().get_context_data(**kwargs)
+
 
 class IngredientUpdate(UpdateView):
   model = Ingredient
