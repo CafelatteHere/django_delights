@@ -1,4 +1,5 @@
 {% extends 'inventory/base.html' %}
+
 {% load static %}
 
 {% block head %}
@@ -6,8 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<h1>Testing Ingredients List</h1>
-{% for ingredient in ingredients %}
-  <p>{{ ingredient.menu_item }}</p>
+<h1>Purchases List</h1>
+{% for purchase in purchases %}
+  <p>{{ purchase.name }}</p>
 {% endfor %}
 {% endblock %}
