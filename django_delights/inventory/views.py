@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from inventory.models import Ingredient, MenuItem
-from .forms import IngredientForm
+from .forms import IngredientForm, MenuItemForm
 
 # Create your views here.
 class IngredientList(ListView):
@@ -39,3 +39,8 @@ class IngredientDelete(DeleteView):
 class MenuItemList(ListView):
   model = MenuItem
   template_name = "inventory/menuitem_list.html"
+
+class MenuItemCreate(CreateView):
+  model = MenuItem
+  template_name = "inventory/menuitem_create.html"
+  form_class = MenuItemForm

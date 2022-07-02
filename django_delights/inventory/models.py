@@ -32,6 +32,9 @@ class MenuItem(models.Model):
   def __str__(self):
     return f"{self.title}, price: {self.price}"
 
+  def get_absolute_url(self):
+    return "/menuitem/list"
+
 # represents a single ingredient and how much of it is required for an item on the menu
 class RecipeRequirement(models.Model):
   menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
