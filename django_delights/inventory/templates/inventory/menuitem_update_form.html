@@ -1,0 +1,13 @@
+{% extends "inventory/base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+  <h2> Update menu item</h2>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit"/>
+</form>
+{% endblock %}

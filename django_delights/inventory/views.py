@@ -25,7 +25,6 @@ class IngredientDetail(DetailView):
   def get_context_data(self, **kwargs):
     return super().get_context_data(**kwargs)
 
-
 class IngredientUpdate(UpdateView):
   model = Ingredient
   template_name = "inventory/ingredient_update_form.html"
@@ -44,3 +43,20 @@ class MenuItemCreate(CreateView):
   model = MenuItem
   template_name = "inventory/menuitem_create.html"
   form_class = MenuItemForm
+
+class MenuItemDetail(DetailView):
+  model = MenuItem
+  template_name = "inventory/menuitem_details.html"
+
+  def get_context_data(self, **kwargs):
+    return super().get_context_data(**kwargs)
+
+class MenuItemUpdate(UpdateView):
+  model = MenuItem
+  template_name = "inventory/menuitem_update_form.html"
+  form_class = MenuItemForm
+
+class MenuItemDelete(DeleteView):
+  model = MenuItem
+  template_name = "inventory/menuitem_delete_form.html"
+  success_url = "/menuitem/list"
