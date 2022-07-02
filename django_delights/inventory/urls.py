@@ -8,4 +8,5 @@ urlpatterns = [
   path("ingredient/<pk>", views.IngredientDetail.as_view(), name="ingredientdetails"),
   path("ingredient/<pk>/update", views.IngredientUpdate.as_view(), name="ingredientupdate"),
   path("ingredient/<pk>/delete", views.IngredientDelete.as_view(), name="ingredientdelete"),
+  path("menuitem/list", views.MenuItemList.as_view(), name="menuitemlist"),
 ]

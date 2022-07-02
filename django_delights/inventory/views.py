@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from inventory.models import Ingredient
+from inventory.models import Ingredient, MenuItem
 from .forms import IngredientForm
 
 # Create your views here.
@@ -35,3 +35,7 @@ class IngredientDelete(DeleteView):
   model = Ingredient
   template_name = "inventory/ingredient_delete_form.html"
   success_url = "/ingredient/list"
+
+class MenuItemList(ListView):
+  model = MenuItem
+  template_name = "inventory/menuitem_list.html"
