@@ -14,4 +14,5 @@ urlpatterns = [
   path("menuitem/<pk>/update", views.MenuItemUpdate.as_view(), name="menuitemupdate"),
   path("menuitem/<pk>/delete", views.MenuItemDelete.as_view(), name='menuitemdelete'),
   path("purchase/list", views.PurchaseList.as_view(), name="purchaselist"),
+  path("purchase/create", views.PurchaseCreate.as_view(), name="purchasecreate"),
 ]

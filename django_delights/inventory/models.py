@@ -49,5 +49,8 @@ class Purchase(models.Model):
   timestamp = models.DateTimeField(auto_now_add=True)
   menu_item = models.ForeignKey(MenuItem, on_delete=models.PROTECT)
 
+  def get_absolute_url(self):
+    return "/purchase/list"
+
   def __str__(self):
     return f"{self.menu_item} was purchased at {self.timestamp}"

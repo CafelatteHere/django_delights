@@ -1,10 +1,11 @@
-# from pyexpat import model
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from inventory.models import Ingredient, MenuItem, Purchase
-from .forms import IngredientForm, MenuItemForm
+from inventory.models import Ingredient, MenuItem, Purchase, RecipeRequirement
+from .forms import IngredientForm, MenuItemForm, PurchaseForm
+from django.contrib import messages
 
 # Create your views here.
 class IngredientList(ListView):
@@ -64,3 +65,21 @@ class MenuItemDelete(DeleteView):
 class PurchaseList(ListView):
   model = Purchase
   template_name = "inventory/purchase_list.html"
+
+class PurchaseCreate(CreateView):
+  model = Purchase
+  form_class = PurchaseForm
+  template_name = "inventory/purchase_create.html"
+
+  # decreasing ingredient.quantity because ingredients were used for the purchased menu_item.
+  def form_valid(self, form):
+    item = form.save(commit=False)
+    menu_item = MenuItem.objects.get(id = item.menu_item.id)
+    item.save()
+    recipe_requirements  = RecipeRequirement.objects.filter(menu_item = menu_item)
+    for i in recipe_requirements:
+      i.ingredient.quantity -= i.quantity
+      i.ingredient.save()
+    messages.success(self.request, "successful")
+    return super(PurchaseCreate, self).form_valid(form)
+
