@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+from django.template.defaultfilters import date as _date
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
@@ -83,3 +85,59 @@ class PurchaseCreate(CreateView):
     messages.success(self.request, "successful")
     return super(PurchaseCreate, self).form_valid(form)
 
+# view the profit and revenue for the restaurant
+def show_profit(request):
+  # calculating total revenue for the restaurant’s overall recorded purchases
+  total_revenue = 0
+  purchases = Purchase.objects.all()
+  for purchase in purchases:
+    total_revenue += purchase.menu_item.price
+
+  # calculating total cost for the restaurant's overall recorded purchases
+  total_cost = 0
+  purchases_menu = [purchase.menu_item for  purchase in purchases]
+
+  recipe_requirements_list = []
+  for item in purchases_menu:
+    menu_items_list = RecipeRequirement.objects.filter(menu_item_id=item.id).values()
+    for menu_item in menu_items_list:
+      recipe_requirements_list.append(menu_item)
+
+  for item in recipe_requirements_list:
+    ingredient_id = item.get('ingredient_id')
+    price = Ingredient.objects.get(id = ingredient_id).unit_price
+    total_cost += price
+
+  # calculating total profit (revenue - cost) of the restaurant
+  total_profit = total_revenue - total_cost
+
+  #calculating total revenue for the previous day:
+  yesterday = datetime.now() - timedelta(days=1)
+  time_string = yesterday.strftime("%Y-%m-%d")
+  yesterday_purchases = Purchase.objects.filter(timestamp__contains = time_string)
+  yesterday_revenue = 0
+  for purchase in yesterday_purchases:
+    yesterday_revenue += purchase.menu_item.price
+
+  #calculating total profit for the previous day:
+  yesterday_cost = 0
+  yesterday_profit = 0
+  yesterday_purchases_menu = [purchase.menu_item for purchase in yesterday_purchases]
+  yesterday_recipe_requirements_list = []
+  for item in yesterday_purchases_menu:
+    menu_items_list = RecipeRequirement.objects.filter(menu_item_id=item.id).values()
+    for menu_item in menu_items_list:
+      yesterday_recipe_requirements_list.append(menu_item)
+
+  for item in yesterday_recipe_requirements_list:
+    ingredient_id = item.get('ingredient_id')
+    price = Ingredient.objects.get(id = ingredient_id).unit_price
+    yesterday_cost += price
+
+  yesterday_profit = yesterday_revenue - yesterday_cost
+
+  context = {"total_profit": total_profit,
+            "total_revenue": total_revenue,
+            "yesterday_revenue": yesterday_revenue,
+            "yesterday_profit": yesterday_profit}
+  return render(request, "inventory/balance.html", context)
