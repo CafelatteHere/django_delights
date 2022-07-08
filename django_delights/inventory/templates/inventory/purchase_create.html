@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+<!-- need to display error message if not enough ingredients -->
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}

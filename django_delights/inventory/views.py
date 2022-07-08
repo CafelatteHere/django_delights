@@ -77,13 +77,23 @@ class PurchaseCreate(CreateView):
   def form_valid(self, form):
     item = form.save(commit=False)
     menu_item = MenuItem.objects.get(id = item.menu_item.id)
-    item.save()
     recipe_requirements  = RecipeRequirement.objects.filter(menu_item = menu_item)
+    errors_list = []
     for i in recipe_requirements:
+      if (i.ingredient.quantity - i.quantity) >= 0:
+        pass
+      else:
+        errors_list.append(i.ingredient.name)
+    if (errors_list.__len__() == 0):
       i.ingredient.quantity -= i.quantity
       i.ingredient.save()
-    messages.success(self.request, "successful")
-    return super(PurchaseCreate, self).form_valid(form)
+      item.save()
+      messages.success(self.request, "successful")
+      return super(PurchaseCreate, self).form_valid(form)
+    else:
+      error_string = ", ".join(errors_list)
+      messages.error(self.request, f"not enough ingredients in the inventory! ({error_string})")
+      return self.render_to_response(self.get_context_data(form=form))
 
 # view the profit and revenue for the restaurant
 def show_profit(request):
