@@ -10,6 +10,10 @@ from .forms import IngredientForm, MenuItemForm, PurchaseForm
 from django.contrib import messages
 
 # Create your views here.
+def home(request):
+  context = {"name": request.user.username}
+  return render(request, "inventory/home.html", context)
+
 class IngredientList(ListView):
   ingredients = Ingredient.objects.all()
   context = {"ingredients": ingredients}
