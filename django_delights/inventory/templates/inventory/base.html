@@ -5,13 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Django Delights</title>
+  <!-- {% load static %} -->
   {% block head %}
+    <!-- <link rel="stylesheet" href="{% static 'inventory/style.css' %}"> -->
   {% endblock %}
 </head>
 <body>
-  <h1>Django Delights</h1>
-  <br>
-  <p>test text</p>
+  <div class="header">
+    <div class="header-container">
+      <h1><a href="{% url 'home' %}">Django Delights</a></h1>
+      <div class="navbar">
+      <a href="{% url 'ingredientlist'%}">Ingredients</a>
+      <a href="{% url 'menuitemlist'%}">Menu Items</a>
+      <a href="{% url 'purchaselist'%}">Purchases</a>
+    </div>
+    </div>
+  </div>
+
 
   {% block content %}
   {% endblock %}
