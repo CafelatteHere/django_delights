@@ -1,1 +1,40 @@
-<h1>Details: {{ ingredient.name}}</h1>
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<body class="body">
+  <table class="table">
+    <thead class="table-header">
+      <tr>
+        <th>Ingredient: {{ ingredient.name}}</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="table-row-1 details ">Quantity in stock</td>
+      <td class="table-row-2 details ">{{ ingredient.quantity }}</td>
+    </tr>
+    <tr>
+      <td class="table-row-1 details ">Measurement</td>
+      <td class="table-row-2 details ">{{ ingredient.unit }}</td>
+    </tr>
+    <tr>
+      <td class="table-row-1 details ">Used in Menu items:</td>
+      <td class="table-row-2 details ">{{ ingredient }}</td>
+    </tr>
+    <tr>
+      <td class="table-row-1 details ">Price</td>
+      <td class="table-row-2 details ">{{ ingredient.unit_price }}</td>
+    </tr>
+    <tr>
+      <td class="table-row-1"><a href="{% url 'ingredientupdate' ingredient.id %}" class="update details btn">Update</a></td>
+      <td class="table-row-2"><a href="{% url 'ingredientdelete' ingredient.id %}" class="delete details btn">Delete</a></td>
+    </tr>
+  </table>
+</body>
+{% endblock %}

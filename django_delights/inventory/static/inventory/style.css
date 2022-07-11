@@ -1,7 +1,7 @@
 body {
   font-size: 14px;
   color: #333;
-  margin: 0 auto; // auto - занять все доступное пространство контейнера.
+  margin: 0 auto;
   }
   h1,h2,h3,h4,h5,h6,p {
   padding: 10px 0;
@@ -32,5 +32,69 @@ a {
 
 .navbar {
   font-size: 3ch;
+  color: #534c5c;
 }
 
+.a:hover {
+  color: #131200;
+}
+
+.body {
+  padding: 15px;
+  position: relative;
+  justify-content: center;
+}
+.table {
+  border: 1px solid #cbc7d1;
+  margin: 5px;
+  width: 95%;
+  position: absolute;
+  font-size: 17px;
+}
+
+.table-header {
+  margin: 5px;
+  background-color: #f1c57e;
+  text-align: center;
+  height: 20px;
+  width: 33%;
+  font-size: 18px;
+}
+
+.table-row-1 {
+  border-right: 1px solid #cbc7d1;
+  border-top: 1px solid #cbc7d1;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.table-row-2 {
+  border-top: 1px solid #cbc7d1;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.details{
+  border-right: 1px solid #cbc7d1;
+  border-top: 1px solid #cbc7d1;
+  width: 50%;
+}
+
+.update {
+  margin-right: 5%;
+  color: #6fa64e;
+}
+
+.delete {
+  margin-right: 10%;
+  color: #d9594c;
+  width: 100%;
+}
+
+.btn {
+  background-color:#eae9ed;
+  border-radius: 3px;
+  padding: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

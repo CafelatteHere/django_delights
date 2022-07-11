@@ -6,8 +6,28 @@
 {% endblock %}
 
 {% block content %}
-<h1>Testing Ingredients List</h1>
-{% for ingredient in ingredients %}
-  <p>{{ ingredient.menu_item }}</p>
-{% endfor %}
+<div class="body">
+  <h2>Ingredients in the inventory:</h2>
+  <table class="table">
+    <thead class="table-header">
+      <tr class="table-header">
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <body">
+      {% for ingredient in object_list %}
+        <tr>
+          <td class="table-row-1"><a href="{% url 'ingredientdetails' ingredient.id %}">{{ ingredient.name | title }}</a></td>
+          <td class="table-row-1">{{ ingredient.quantity}} </td>
+          <td class="table-row-2">
+            <a href="{% url 'ingredientupdate' ingredient.id %}" class="update btn">Update</a>
+            <a href="{% url 'ingredientdelete' ingredient.id %}" class="delete btn">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </body>
+  </table>
+</div>
 {% endblock %}
