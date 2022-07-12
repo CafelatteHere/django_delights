@@ -102,3 +102,13 @@ a {
 .link {
   text-decoration: underline;
 }
+
+.createpurchase_btn{
+  width: 150px;
+  height: 35px;
+  font-size: 22px;
+  background-color:#eae9ed;
+  border-radius: 3px;
+  margin: 5px;
+  text-align: center;
+}

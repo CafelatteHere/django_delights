@@ -7,8 +7,24 @@
 {% endblock %}
 
 {% block content %}
-<h1>Purchases List</h1>
-{% for purchase in purchases %}
-  <p>{{ purchase.name }}</p>
-{% endfor %}
+<div class="body">
+  <p class="createpurchase_btn"><a href="{% url 'purchasecreate' %}">Add purchase</a></p>
+  <h2>Purchases List</h2>
+  <table class="table">
+    <thead class="table-header">
+      <tr class="table-header">
+        <th>Purchase time</th>
+        <th>Purchased item</th>
+      </tr>
+    </thead>
+    <body">
+      {% for purchase in object_list %}
+        <tr>
+          <td class="table-row-1">{{ purchase.timestamp }}</td>
+          <td class="table-row-2">{{ purchase.menu_item.title | title}} </td>
+        </tr>
+      {% endfor %}
+    </body>
+  </table>
+</div>
 {% endblock %}
