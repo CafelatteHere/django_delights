@@ -11,7 +11,7 @@
   <table class="table">
     <thead class="table-header">
       <tr>
-        <th>Ingredient: {{ ingredient.name}}</th>
+        <th>Ingredient: {{ ingredient.name | title}}</th>
         <th>Details</th>
       </tr>
     </thead>
@@ -25,7 +25,11 @@
     </tr>
     <tr>
       <td class="table-row-1 details ">Used in Menu items:</td>
-      <td class="table-row-2 details ">{{ ingredient }}</td>
+      <td class="table-row-2 details ">
+        {% for item in recipe_requirements_list %}
+          <a href="{% url 'menuitemdetails' item.menu_item.id %}" class="link">{{ item.menu_item.title}};</a>
+        {% endfor %}
+      </td>
     </tr>
     <tr>
       <td class="table-row-1 details ">Price</td>

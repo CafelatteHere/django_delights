@@ -28,9 +28,28 @@ class IngredientCreate(CreateView):
 class IngredientDetail(DetailView):
   model = Ingredient
   template_name = "inventory/ingredient_details.html"
+  # ingredient =  Ingredient.objects.get(ingredient_id=self.object.id)
+  # recipe_requirements_list = []
+  # recipe_requirements = ingredient.reciperequirement_set.all()
+  # for item in recipe_requirements:
+  #   recipe_requirements_list.append(item)
+
 
   def get_context_data(self, **kwargs):
-    return super().get_context_data(**kwargs)
+    context = super().get_context_data(**kwargs)
+    context['object'] = self.object
+    ingredient = Ingredient.objects.get(id=context['object'].pk)
+    recipe_requirements_list = []
+    for item in context['object'].reciperequirement_set.all():
+      recipe_requirements_list.append(item)
+    context = {
+      'ingredient':ingredient,
+      'recipe_requirements_list': recipe_requirements_list
+    }
+    return context
+  # items = get_object(self).reciperequirement_set.all()
+  # context =  {"items": items}
+
 
 class IngredientUpdate(UpdateView):
   model = Ingredient
