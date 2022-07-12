@@ -1,1 +1,33 @@
-<h2>menu items list</h2>
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body">
+  <h2>Available Menu Items:</h2>
+  <table class="table">
+    <thead class="table-header">
+      <tr class="table-header">
+        <th>Title</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <body">
+      {% for menuitem in object_list %}
+        <tr>
+          <td class="table-row-1"><a href="{% url 'menuitemdetails' menuitem.id %}">{{ menuitem.title | title }}</a></td>
+          <td class="table-row-1">{{ menuitem.price}} </td>
+          <td class="table-row-2">
+            <a href="{% url 'menuitemupdate' menuitem.id %}" class="update btn">Update</a>
+            <a href="{% url 'menuitemdelete' menuitem.id %}" class="delete btn">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </body>
+  </table>
+</div>
+{% endblock %}

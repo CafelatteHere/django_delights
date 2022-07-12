@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <body">
-      <!-- {% for ingredient in object_list %} -->
+      {% for ingredient in object_list %}
         <tr>
           <td class="table-row-1"><a href="{% url 'ingredientdetails' ingredient.id %}">{{ ingredient.name | title }}</a></td>
           <td class="table-row-1">{{ ingredient.quantity}} </td>
