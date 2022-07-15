@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
-from django.template.defaultfilters import date as _date
+from multiprocessing import context
+# from django.template.defaultfilters import date as _date
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
@@ -10,6 +12,21 @@ from .forms import IngredientForm, MenuItemForm, PurchaseForm
 from django.contrib import messages
 
 # Create your views here.
+def login_view(request):
+  context = {
+    "login_view": "active"
+  }
+  if request.method == "POST":
+    email = request.POST["email"]
+    password = request.POST["password"]
+    user = authenticate(request, email=email, password=password)
+    if user is not None:
+      login(request, user)
+      return redirect("home")
+    else:
+      return HttpResponse("Invalid email or password. Please try again")
+  return render(request, "registration/login.html", context)
+
 def home(request):
   context = {"name": request.user.username}
   return render(request, "inventory/home.html", context)
@@ -33,7 +50,6 @@ class IngredientDetail(DetailView):
   # recipe_requirements = ingredient.reciperequirement_set.all()
   # for item in recipe_requirements:
   #   recipe_requirements_list.append(item)
-
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)

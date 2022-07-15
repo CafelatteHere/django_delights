@@ -1,0 +1,22 @@
+<!--registration/login/html-->
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body">
+  <h2>Log in:</h2>
+  <form method=""POST>
+    {% csrf_token %}
+    <label for="email">E-mail:</label>
+    <input type="text" name="email"><br><br>
+    <label for="password">Password</label>
+    <input type="text" name="password"><br><br>
+    <input type="submit" value="Log in">
+  </form>
+  <p>Have no account yet? Sign in here:</p>
+</div>
+{% endblock %}
