@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <body">
-      {% for purchase in object_list %}
+      {% for purchase in object_list|dictsortreversed:"timestamp" %}
         <tr>
           <td class="table-row-1">{{ purchase.timestamp }}</td>
           <td class="table-row-2">{{ purchase.menu_item.title | title}} </td>
