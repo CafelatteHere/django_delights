@@ -1,0 +1,19 @@
+<!--registration/signup/html-->
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body">
+  <h2>Sign up:</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Sign up">
+  </form>
+  <p>Already have an account? Log in here: <a class='btn' href="{% url 'login' %}"> Log in</a></p>
+</div>
+{% endblock %}
