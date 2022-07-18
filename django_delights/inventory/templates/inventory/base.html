@@ -21,6 +21,9 @@
       <a href="{% url 'showprofit' %}">Balance</a>
     </div>
     </div>
+    {% if user.username %}
+      <div class="logout_btn btn"><a href="{% url 'logout' %}">Logout</a></div>
+    {% endif %}
   </div>
 
 

@@ -1,31 +1,31 @@
 from datetime import datetime, timedelta
-from multiprocessing import context
-# from django.template.defaultfilters import date as _date
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from inventory.models import Ingredient, MenuItem, Purchase, RecipeRequirement
 from .forms import IngredientForm, MenuItemForm, PurchaseForm
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
-def login_view(request):
-  context = {
-    "login_view": "active"
-  }
-  if request.method == "POST":
-    email = request.POST["email"]
-    password = request.POST["password"]
-    user = authenticate(request, email=email, password=password)
-    if user is not None:
-      login(request, user)
-      return redirect("home")
-    else:
-      return HttpResponse("Invalid email or password. Please try again")
-  return render(request, "registration/login.html", context)
+class UserLogin(LoginView):
+  template_name = "registration/login.html"
+  success_url = "home"
+
+class SignUp(CreateView):
+  form_class = UserCreationForm
+  success_url = reverse_lazy("login")
+  template_name = "registration/signup.html"
+
+def logout_view(request):
+  logout(request)
+  return redirect("login")
 
 def home(request):
   context = {"name": request.user.username}

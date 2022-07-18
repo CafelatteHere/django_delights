@@ -7,14 +7,22 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="body">
+{% if form.errors %}
+  {% for error in form.errors %}
+    <p>{{ error }}</p>
+  {% endfor %}
+{% endif %}
+
   <h2>Log in:</h2>
-  <form method=""POST>
+  <form method="POST">
     {% csrf_token %}
-    <label for="email">E-mail:</label>
+    {{ form.as_p }}
+    <!-- <label for="email">E-mail:</label>
     <input type="text" name="email"><br><br>
     <label for="password">Password</label>
-    <input type="text" name="password"><br><br>
+    <input type="text" name="password"><br><br> -->
     <input type="submit" value="Log in">
   </form>
   <p>Have no account yet? Sign in here:</p>
