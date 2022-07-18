@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -27,22 +29,23 @@ def logout_view(request):
   logout(request)
   return redirect("login")
 
+@login_required
 def home(request):
   context = {"name": request.user.username}
   return render(request, "inventory/home.html", context)
 
-class IngredientList(ListView):
+class IngredientList(LoginRequiredMixin, ListView):
   ingredients = Ingredient.objects.all()
   context = {"ingredients": ingredients}
   model = Ingredient
   template_name = "inventory/ingredient_list.html"
 
-class IngredientCreate(CreateView):
+class IngredientCreate(LoginRequiredMixin, CreateView):
   model = Ingredient
   template_name = "inventory/ingredient_create_form.html"
   form_class = IngredientForm
 
-class IngredientDetail(DetailView):
+class IngredientDetail(LoginRequiredMixin, DetailView):
   model = Ingredient
   template_name = "inventory/ingredient_details.html"
   # ingredient =  Ingredient.objects.get(ingredient_id=self.object.id)
@@ -67,47 +70,47 @@ class IngredientDetail(DetailView):
   # context =  {"items": items}
 
 
-class IngredientUpdate(UpdateView):
+class IngredientUpdate(LoginRequiredMixin, UpdateView):
   model = Ingredient
   template_name = "inventory/ingredient_update_form.html"
   form_class = IngredientForm
 
-class IngredientDelete(DeleteView):
+class IngredientDelete(LoginRequiredMixin, DeleteView):
   model = Ingredient
   template_name = "inventory/ingredient_delete_form.html"
   success_url = "/ingredient/list"
 
-class MenuItemList(ListView):
+class MenuItemList(LoginRequiredMixin, ListView):
   model = MenuItem
   template_name = "inventory/menuitem_list.html"
 
-class MenuItemCreate(CreateView):
+class MenuItemCreate(LoginRequiredMixin, CreateView):
   model = MenuItem
   template_name = "inventory/menuitem_create.html"
   form_class = MenuItemForm
 
-class MenuItemDetail(DetailView):
+class MenuItemDetail(LoginRequiredMixin, DetailView):
   model = MenuItem
   template_name = "inventory/menuitem_details.html"
 
   def get_context_data(self, **kwargs):
     return super().get_context_data(**kwargs)
 
-class MenuItemUpdate(UpdateView):
+class MenuItemUpdate(LoginRequiredMixin, UpdateView):
   model = MenuItem
   template_name = "inventory/menuitem_update_form.html"
   form_class = MenuItemForm
 
-class MenuItemDelete(DeleteView):
+class MenuItemDelete(LoginRequiredMixin, DeleteView):
   model = MenuItem
   template_name = "inventory/menuitem_delete_form.html"
   success_url = "/menuitem/list"
 
-class PurchaseList(ListView):
+class PurchaseList(LoginRequiredMixin, ListView):
   model = Purchase
   template_name = "inventory/purchase_list.html"
 
-class PurchaseCreate(CreateView):
+class PurchaseCreate(LoginRequiredMixin, CreateView):
   model = Purchase
   form_class = PurchaseForm
   template_name = "inventory/purchase_create.html"
@@ -135,6 +138,7 @@ class PurchaseCreate(CreateView):
       return self.render_to_response(self.get_context_data(form=form))
 
 # view the profit and revenue for the restaurant
+@login_required
 def show_profit(request):
   # calculating total revenue for the restaurant’s overall recorded purchases
   total_revenue = 0
