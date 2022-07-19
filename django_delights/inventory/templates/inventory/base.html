@@ -13,21 +13,23 @@
 <body>
   <div class="header">
     <div class="header-container">
-      <h1><a href="{% url 'home' %}">Django Delights</a></h1>
-      <div class="navbar">
-      <a href="{% url 'ingredientlist'%}">Ingredients</a>
-      <a href="{% url 'menuitemlist'%}">Menu Items</a>
-      <a href="{% url 'purchaselist'%}">Purchases</a>
-      <a href="{% url 'showprofit' %}">Balance</a>
+        <h1><a href="{% url 'home' %}">Django Delights</a></h1>
+        <div class="navbar">
+          <a href="{% url 'ingredientlist'%}">Ingredients</a>
+          <a href="{% url 'menuitemlist'%}">Menu Items</a>
+          <a href="{% url 'purchaselist'%}">Purchases</a>
+          <a href="{% url 'showprofit' %}">Balance</a>
+        </div>
     </div>
+    <div class="logout_btn_container">
+      {% if user.username %}
+        <a href="{% url 'logout' %}">Logout</a>
+      {% endif %}
     </div>
-    {% if user.username %}
-      <div class="logout_btn btn"><a href="{% url 'logout' %}">Logout</a></div>
-    {% endif %}
   </div>
-
-
-  {% block content %}
-  {% endblock %}
+  <div class="main_content">
+    {% block content %}
+    {% endblock %}
+  </div>
 </body>
 </html>
