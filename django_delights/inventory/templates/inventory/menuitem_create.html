@@ -1,13 +1,22 @@
-{% extends "inventory/base.html" %}
+{% extends 'inventory/base.html' %}
+{% load static %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}?{ % now 'aaaa' %}">
 {% endblock %}
 
 {% block content %}
-  <form method="POST">
-    <h2>Add new Menu Item</h2>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Add menu item!"/>
-  </form>
+<div class="body">
+  <div class="form">
+    <div class="form-title"><h2>Add new Menu item:</h2></div>
+    <hr class="line">
+    <div class="form_content">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br><input type="submit" class="btn_login" value="Add menu item!"/>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
