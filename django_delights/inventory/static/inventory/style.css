@@ -5,7 +5,7 @@ body {
   position: relative;
   flex-direction: column;
   display: flex;
-  width: 100%;
+  width: 100vw;
   }
 
   h1,h2,h3,h4,h5,h6,p {
@@ -28,9 +28,10 @@ a {
 }
 
 .header {
-  width: 100vw;
-  position: absolute;
-  justify-content:space-evenly;
+  width: 100%;
+  /* position: absolute; */
+  position:relative;
+  justify-content:space-between;
   align-items:center;
   display: flex;
   height: 100px;
@@ -43,12 +44,12 @@ a {
 .header-container {
   width: 50%;
   opacity: 100%;
-  position: absolute;
+  /* position: absolute; */
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
   display: flex;
-  margin-right: 20%;
+  margin-right: 10%;
 }
 
 .navbar {
@@ -58,11 +59,11 @@ a {
 
 .logout_btn_container{
   width: 20%;
-  position: absolute;
+  /* position: absolute; */
   align-items: center;
   justify-content: center;
+  margin-right: 10%;
   display: flex;
-  margin-left: 20%;
   width: 140px;
   height: 30px;
   font-size: 20px;
@@ -161,3 +162,4 @@ a {
 .form{
   background: color #131200;
 }
+
