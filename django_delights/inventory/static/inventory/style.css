@@ -186,4 +186,9 @@ a {
   padding: 3px;
 }
 
+.line {
+  width: 80%;
+  height: 1px;
+  background-color: #f1c57e;
+}
 

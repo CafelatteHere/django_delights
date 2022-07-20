@@ -2,13 +2,21 @@
 {% load static %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}?{ % now 'aaaa' %}">
 {% endblock %}
 
 {% block content %}
-<h1>Add new ingredient:</h1>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Add ingredient!"/>
-</form>
+<div class="body">
+  <div class="form">
+    <div class="title"><h2>Add new ingredient:</h2></div>
+    <hr class="line">
+    <div class="form_content">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br><input type="submit" class="btn_login" value="Add ingredient!"/>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
