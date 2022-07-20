@@ -8,12 +8,16 @@
 
 {% block content %}
 <div class="body">
-  <h2>Sign up:</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Sign up">
+  <div class="form">
+    <h2 class="form-title">Sign up:</h2>
+    <div class="form_content">
+      <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="btn"><input class= "btn_login" type="submit" value="Sign up"></div>
+    </div>
   </form>
-  <p>Already have an account? Log in here: <a class='btn' href="{% url 'login' %}"> Log in</a></p>
+  <br><br><p >Already have an account? Log in here: <a class='btn_yellow' href="{% url 'login' %}"> Log in</a></p>
+  </div>
 </div>
 {% endblock %}

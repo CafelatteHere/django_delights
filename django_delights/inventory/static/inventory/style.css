@@ -74,6 +74,7 @@ a {
 .body {
   padding: 15px;
   position: absolute;
+  width: 100vw;
   /* justify-content: center; */
   flex-direction: column;
   align-items: center;
@@ -160,6 +161,29 @@ a {
 
 /* form styling */
 .form{
-  background: color #131200;
+  background-color: #eae9ed;
+  width: 60%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: flex-start;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #333;
 }
+
+.btn_login{
+  padding: 7px;
+  font-size: 20px;
+  background-color: #6fa64e;
+  border-radius: 3px;
+  border: none;
+}
+.btn_yellow{
+  background-color: #f1c57e;
+  color: #131200;
+  padding: 3px;
+}
+
 
