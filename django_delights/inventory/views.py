@@ -10,7 +10,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from inventory.models import Ingredient, MenuItem, Purchase, RecipeRequirement
-from .forms import IngredientForm, MenuItemForm, PurchaseForm
+from .forms import IngredientForm, MenuItemForm, PurchaseForm, RecipeRequirementForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 
@@ -105,6 +105,12 @@ class MenuItemDelete(LoginRequiredMixin, DeleteView):
   model = MenuItem
   template_name = "inventory/menuitem_delete_form.html"
   success_url = "/menuitem/list"
+
+class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
+  model = RecipeRequirement
+  template_name: "inventory/reciperequirement_form.html"
+  form_class = RecipeRequirementForm
+  success_url: "/menuitem/list"
 
 class PurchaseList(LoginRequiredMixin, ListView):
   model = Purchase
