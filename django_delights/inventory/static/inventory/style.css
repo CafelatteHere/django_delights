@@ -146,6 +146,47 @@ a {
   padding: 2px 0px 2px;
 }
 
+.table {
+  border: 1px solid #cbc7d1;
+  margin: 5px;
+  width: 70%;
+  font-size: 17px;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.balance-first-row-1 {
+  width: 50%;
+  border-right: 1px solid #cbc7d1;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 2px 0px 2px;
+}
+
+.balance-first-row-2 {
+  width: 50%;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 2px 0px 2px;
+}
+
+.balance-row-1 {
+  width: 50%;
+  border-right: 1px solid #cbc7d1;
+  border-top: 1px solid #cbc7d1;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 2px 0px 2px;
+}
+
+.balance-row-2 {
+  width: 50%;
+  border-top: 1px solid #cbc7d1;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 2px 0px 2px;
+}
+
 .details{
   border-right: 1px solid #cbc7d1;
   border-top: 1px solid #cbc7d1;

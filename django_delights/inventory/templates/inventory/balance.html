@@ -1,13 +1,37 @@
 {% extends 'inventory/base.html' %}
-
 {% load static %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
 {% endblock %}
 
 {% block content %}
-<p>yesterday's revenue: {{ yesterday_revenue }}</p>
-<p>yesterday's profit: {{ yesterday_profit }}</p>
-<p>total revenue {{ total_revenue }}</p>
-<p>total profit {{ total_profit }}</p>
+<div class="table-page">
+  <div class="table-content">
+    <h2>Restaurant's balance</h2>
+    <hr class="line">
+    <table class="table">
+        <tr>
+          <td class="balance-first-row-1">Yesterday's revenue: </td>
+          <td class="balance-first-row-2">{{ yesterday_revenue }}</td>
+          </td>
+        </tr>
+        <tr>
+          <td class="balance-row-1">Yesterday's profit: </td>
+          <td class="balance-row-2">{{ yesterday_profit }}</td>
+          </td>
+        </tr>
+        <tr>
+          <td class="balance-row-1">Total revenue: </td>
+          <td class="balance-row-2">{{ total_revenue }}</td>
+          </td>
+        </tr>
+        <tr>
+          <td class="balance-row-1">Totals profit: </td>
+          <td class="balance-row-2">{{ total_profit }}</td>
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>
 {% endblock %}
