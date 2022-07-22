@@ -6,18 +6,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="body">
-  <p class="create_btn"><a href="{% url 'menuitemcreate' %}">Add Menu item</a></p>
-  <h2>Available Menu Items:</h2>
-  <table class="table">
-    <thead class="table-header">
+<div class="table-page">
+  <div class="table-content">
+    <p class="create_btn"><a href="{% url 'menuitemcreate' %}">Add Menu item</a></p>
+    <hr class="line">
+    <h2>Available Menu Items</h2>
+    <table class="table">
       <tr class="table-header">
-        <th>Title</th>
-        <th>Price</th>
-        <th>Actions</th>
+        <tr class="">
+          <th class="header-row-1" >Title</th>
+          <th class="header-row-1">Price</th>
+          <th class="header-row-2">Actions</th>
+        </tr>
       </tr>
-    </thead>
-    <body">
+
       {% for menuitem in object_list %}
         <tr>
           <td class="table-row-1"><a href="{% url 'menuitemdetails' menuitem.id %}">{{ menuitem.title | title }}</a></td>
@@ -28,7 +30,8 @@
           </td>
         </tr>
       {% endfor %}
-    </body>
-  </table>
+    </table>
+  </div>
 </div>
 {% endblock %}
+

@@ -7,24 +7,26 @@
 {% endblock %}
 
 {% block content %}
-<div class="body">
-  <p class="create_btn"><a href="{% url 'purchasecreate' %}">Add purchase</a></p>
-  <h2>Purchases List</h2>
-  <table class="table">
-    <thead class="table-header">
+<div class="table-page">
+  <div class="table-content">
+    <p class="create_btn"><a href="{% url 'purchasecreate' %}">Add purchase</a></p>
+    <hr class="line">
+    <h2>Purchases List</h2>
+    <table class="table">
       <tr class="table-header">
-        <th>Purchase time</th>
-        <th>Purchased item</th>
-      </tr>
-    </thead>
-    <body">
-      {% for purchase in object_list|dictsortreversed:"timestamp" %}
-        <tr>
-          <td class="table-row-1">{{ purchase.timestamp }}</td>
-          <td class="table-row-2">{{ purchase.menu_item.title | title}} </td>
+        <tr class="">
+          <th class="header-row-1" >Purchase time</th>
+          <th class="header-row-2">Purchased item</th>
         </tr>
+      </tr>
+
+      {% for purchase in object_list|dictsortreversed:"timestamp" %}
+      <tr>
+        <td class="table-row-1">{{ purchase.timestamp }}</td>
+        <td class="table-row-2">{{ purchase.menu_item.title | title}} </td>
+      </tr>
       {% endfor %}
-    </body>
-  </table>
+    </table>
+  </div>
 </div>
 {% endblock %}
