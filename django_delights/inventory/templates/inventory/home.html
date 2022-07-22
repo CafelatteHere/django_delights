@@ -6,6 +6,16 @@
 {% endblock %}
 
 {% block content %}
-  <h4>Hello, {{user.username}}! </h4>
-  <h4>this is home view.</h4>
+  <div class="body">
+    <h2>Hello, {{user.username}}! </h2><br>
+    <div class="home-content">
+      <p>Here you can change Restaurant's ingredients, menu items lists. You can also check purchases list and add a new purchase. And you can check Restaurant's balance.</p><br>
+      <p>To add see ingredients list, navigate to "Ingredients" from the header menu. There you can also add new ingredient, update or delete already existing ingredients. By clicking ingredient name, you will see more details about it. You will also see the list of menu items where it is used.</p>
+      <p>To make same actions with menu items, navigate to "Menu items". You can add new ingredient to menu item recipe requirements on the menu item details page.</p>
+      <p>Purchase page will show you logs of purchased items and the dates of purchases</p>
+      <p>On the Balance page you will find revenue and profit for the previous day and total revenue and profit.</p><br><br>
+      <p><i>Any questions about this application? Any ideas what functions can be added to make your work easier? Send them at aaa@domain-name.com</i></p><br>
+      <p>Have a nice day!</p>
+    </div>
+  </div>
 {% endblock %}
