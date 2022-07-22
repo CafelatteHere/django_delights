@@ -1,12 +1,22 @@
-{% extends "inventory/base.html" %}
+{% extends 'inventory/base.html' %}
+{% load static %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
 {% endblock %}
 
 {% block content %}
-  <form action="" method="POST">
-    {% csrf_token %}
-    <h2>Please confirm deleting menu item {{menuitem.title|title }}</h2>
-    <input type="submit" value="Delete"/>
-  </form>
+<div class="body">
+  <div class="form">
+    <div class="form-title"><h2>Delete Menu item</h2></div>
+    <hr class="line">
+    <div class="form_content">
+      <form method="POST">
+        {% csrf_token %}
+        <p>Please confirm deleting menu item (<b>{{ menuitem.title | title }}</b>)</p>
+        <br><input type="submit" class="btn_login" value="Delete"/>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
