@@ -94,7 +94,15 @@ class MenuItemDetail(LoginRequiredMixin, DetailView):
   template_name = "inventory/menuitem_details.html"
 
   def get_context_data(self, **kwargs):
-    return super().get_context_data(**kwargs)
+    context = super().get_context_data(**kwargs)
+    context['object'] = self.object
+    recipe_requirements = RecipeRequirement.objects.filter(menu_item = self.object)
+    ingredients = []
+    for item in recipe_requirements:
+      ingredients.append(item.ingredient)
+    context['ingredients'] = ingredients
+    return context
+
 
 class MenuItemUpdate(LoginRequiredMixin, UpdateView):
   model = MenuItem

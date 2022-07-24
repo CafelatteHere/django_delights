@@ -1,9 +1,42 @@
-{% extends "inventory/base.html" %}
+{% extends 'inventory/base.html' %}
+{% load static %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
 {% endblock %}
 
-{% block content %}
-<h2>Menu Item {{menuitem.title}} Details </h2>
 <!-- add later: price of menu item, what ingredients does it include, link to recipe requirement create and edit css for them too. -->
+
+{% block content %}
+<div class="table-page">
+  <div class="table-content">
+    <table class="table">
+
+      <tr class="table-header">
+        <tr>
+          <th class="header-row-1">Menu item: {{ menuitem.title | title}}</th>
+          <th class="header-row-2">Details</th>
+        </tr>
+      </tr>
+      <tr>
+        <td class="table-row-1 details ">Price</td>
+        <td class="table-row-2 details ">{{ menuitem.price }}</td>
+      </tr>
+      <tr>
+        <td class="table-row-1 details ">Ingredients needed for this menu item</td>
+        <td class="table-row-2 details ">
+          {% for item in ingredients %}
+            <a href="{% url 'ingredientdetails' item.id %}">{{item.name | title}};</a>
+          {% endfor %}
+          <p><a class="udpate details btn" href='{% url "recreqcreate" %}' >Add new ingredient</a></p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="table-row-1"><a href="{% url 'menuitemupdate' menuitem.id %}" class="update details btn">Update</a></td>
+        <td class="table-row-2"><a href="{% url 'menuitemdelete' menuitem.id %}" class="delete details btn">Delete</a></td>
+      </tr>
+    </table>
+  </div>
+</div>
 {% endblock %}
