@@ -7,7 +7,17 @@
 
 {% block content %}
 <!-- need to display error message if not enough ingredients -->
+
 <div class="body">
+  {% if messages %}
+    <div class="message">
+      {% for message in messages %}
+      <div class="message-text">{{ message }}</div>
+    {% endfor %}
+    </div>
+  {% endif %}
+
+
   <div class="form">
     <div class="form-title"><h2>Add new purchase record:</h2></div>
     <hr class="line">

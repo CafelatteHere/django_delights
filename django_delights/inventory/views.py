@@ -144,12 +144,13 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
       i.ingredient.quantity -= i.quantity
       i.ingredient.save()
       item.save()
-      messages.success(self.request, "successful")
+      # messages.success(self.request, "successful")
       return super(PurchaseCreate, self).form_valid(form)
     else:
       error_string = ", ".join(errors_list)
       messages.error(self.request, f"not enough ingredients in the inventory! ({error_string})")
       return self.render_to_response(self.get_context_data(form=form))
+
 
 # view the profit and revenue for the restaurant
 @login_required

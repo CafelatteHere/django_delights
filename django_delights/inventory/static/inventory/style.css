@@ -261,3 +261,24 @@ a {
   background-color: #f1c57e;
 }
 
+.message {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  text-align: center;
+  background-color: #f1c57e;
+  font-size: 20px;
+  border-radius:3px;
+  z-index: 1;
+  position: fixed;
+  margin-top: 10px;
+}
+
+.message-text {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  /* text-align: center; */
+}
