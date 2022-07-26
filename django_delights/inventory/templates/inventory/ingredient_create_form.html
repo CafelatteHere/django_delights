@@ -7,6 +7,14 @@
 
 {% block content %}
 <div class="body">
+  {% if messages %}
+    <div class="message">
+      {% for message in messages %}
+        <div class="message-text">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <div class="form">
     <div class="form-title"><h2>Add new ingredient:</h2></div>
     <hr class="line">
