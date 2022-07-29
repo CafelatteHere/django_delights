@@ -22,11 +22,12 @@
       </div>
   </div>
 
-    <div class="logout_btn_container">
+
     {% if user.username %}
+    <div class="logout_btn_container">
       <a href="{% url 'logout' %}">Logout</a>
+     </div>
     {% endif %}
-    </div>
   </div>
   <div class="main_content">
     {% block content %}
