@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
@@ -13,7 +13,6 @@ from inventory.models import Ingredient, MenuItem, Purchase, RecipeRequirement
 from .forms import IngredientForm, MenuItemForm, PurchaseForm, RecipeRequirementForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-
 
 # Create your views here.
 class UserLogin(LoginView):
@@ -48,11 +47,6 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
 class IngredientDetail(LoginRequiredMixin, DetailView):
   model = Ingredient
   template_name = "inventory/ingredient_details.html"
-  # ingredient =  Ingredient.objects.get(ingredient_id=self.object.id)
-  # recipe_requirements_list = []
-  # recipe_requirements = ingredient.reciperequirement_set.all()
-  # for item in recipe_requirements:
-  #   recipe_requirements_list.append(item)
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -66,9 +60,6 @@ class IngredientDetail(LoginRequiredMixin, DetailView):
       'recipe_requirements_list': recipe_requirements_list
     }
     return context
-  # items = get_object(self).reciperequirement_set.all()
-  # context =  {"items": items}
-
 
 class IngredientUpdate(LoginRequiredMixin, UpdateView):
   model = Ingredient
