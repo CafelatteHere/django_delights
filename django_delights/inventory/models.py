@@ -38,7 +38,7 @@ class MenuItem(models.Model):
 # represents a single ingredient and how much of it is required for an item on the menu
 class RecipeRequirement(models.Model):
   menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-  ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
+  ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
   quantity = models.DecimalField(max_digits=7, decimal_places=1)
   unit = models.CharField(max_length=10, choices=UNIT_CHOICES, default="")
 
@@ -50,7 +50,7 @@ class RecipeRequirement(models.Model):
 
 class Purchase(models.Model):
   timestamp = models.DateTimeField(auto_now_add=True)
-  menu_item = models.ForeignKey(MenuItem, on_delete=models.PROTECT)
+  menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
 
   def get_absolute_url(self):
     return "/purchase/list"
