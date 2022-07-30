@@ -8,6 +8,13 @@
 
 {% block content %}
 <div class="table-page">
+  {% if messages %}
+    <div class="message">
+      {% for message in messages %}
+      <div class="message-text">{{ message }}</div>
+    {% endfor %}
+    </div>
+  {% endif %}
   <div class="table-content">
     <p class="create_btn"><a href="{% url 'purchasecreate' %}">Add purchase</a></p>
     <hr class="line">
